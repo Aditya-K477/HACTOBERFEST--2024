@@ -1,17 +1,31 @@
 def is_armstrong_number(num):
-    # Convert the number to a string to iterate through its digits
-    digits = str(num)
-    power = len(digits)  # The number of digits in the number
-    total = sum(int(digit) ** power for digit in digits)  # Sum of digits raised to the power of the number of digits
+    # Find the number of digits in the number
+    original_num = num
+    power = len(str(num))  # The number of digits in the number (this step can't be avoided)
+    
+    total = 0
+    while num > 0:
+        digit = num % 10  # Get the last digit
+        total += digit ** power  # Add the digit raised to the power of number of digits
+        num //= 10  # Remove the last digit
 
     # Check if the total is equal to the original number
-    return total == num
+    return total == original_num
 
-# Example usage
+#  Take use input and Continuous loop to check multiple numbers
 if __name__ == "__main__":
-    test_numbers = [153, 370, 371, 9474, 123, 5]
-    for number in test_numbers:
-        if is_armstrong_number(number):
-            print(f"{number} is an Armstrong number.")
-        else:
-            print(f"{number} is not an Armstrong number.")
+    while True:
+        number = input("Enter a number to check if it's an Armstrong number (or 'q' to quit): ")
+        
+        if number.lower() == 'q':  
+            print("Exiting the program.")
+            break
+
+        try:
+            number = int(number)
+            if is_armstrong_number(number):
+                print(f"{number} is an Armstrong number.")
+            else:
+                print(f"{number} is not an Armstrong number.")
+        except ValueError:
+            print("Please enter a valid number or 'q' to quit.")
