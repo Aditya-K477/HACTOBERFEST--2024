@@ -23,3 +23,13 @@ while True:  #using a while loop to check for armstrong infinite number of times
     else:
         print(f"{inp} is not an armstrong number")
 
+'''
+an example for understanding armstrong number
+number=153
+number of digits=3
+1^3=1
+5^3=125
+3^3=27
+1+125+27=153
+so this an armstrong number
+'''
