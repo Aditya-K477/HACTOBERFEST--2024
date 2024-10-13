@@ -1,0 +1,29 @@
+def subarraySum(nums, k):
+    count = 0
+    current_sum = 0
+    prefix_sums = {0: 1}  # Hash map to store the count of prefix sums
+
+    for num in nums:
+        current_sum += num  # Update current sum
+        
+        # Check if there's a prefix sum such that current_sum - prefix_sum equals k
+        if (current_sum - k) in prefix_sums:
+            count += prefix_sums[current_sum - k]
+        
+        # Update the prefix_sums map
+        if current_sum in prefix_sums:
+            prefix_sums[current_sum] += 1
+        else:
+            prefix_sums[current_sum] = 1
+
+    return count
+
+# Example 1
+nums1 = [1, 1, 1]
+k1 = 2
+print(subarraySum(nums1, k1))  # Output: 2
+
+# Example 2
+nums2 = [1, 2, 3]
+k2 = 3
+print(subarraySum(nums2, k2))  # Output: 2
