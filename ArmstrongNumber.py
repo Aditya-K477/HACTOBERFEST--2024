@@ -1,17 +1,25 @@
-def is_armstrong_number(num):
-    # Convert the number to a string to iterate through its digits
-    digits = str(num)
-    power = len(digits)  # The number of digits in the number
-    total = sum(int(digit) ** power for digit in digits)  # Sum of digits raised to the power of the number of digits
+def isArmstrong(N):  #defining a function for checking if the number is armstrong or not
+    original = N
+    k = N
+    sum = 0
+    count = 0
+    while N != 0:
+        N = N // 10
+        count += 1  ##for counting the number of digits in the fivin number
 
-    # Check if the total is equal to the original number
-    return total == num
+    while k != 0:
+        a = k % 10 #finding individual digits using mathematical technique to extract all digits one by one
+        k = k // 10
+        sum += a ** count
 
-# Example usage
-if __name__ == "__main__":
-    test_numbers = [153, 370, 371, 9474, 123, 5]
-    for number in test_numbers:
-        if is_armstrong_number(number):
-            print(f"{number} is an Armstrong number.")
-        else:
-            print(f"{number} is not an Armstrong number.")
+    if sum == original:
+        return True
+    else:
+        return False
+while True:  #using a while loop to check for armstrong infinite number of times
+    inp = int(input("Enter the number to be checked\n"))
+    if isArmstrong(inp) == True:
+        print(f"{inp} is an armstrong number")
+    else:
+        print(f"{inp} is not an armstrong number")
+
