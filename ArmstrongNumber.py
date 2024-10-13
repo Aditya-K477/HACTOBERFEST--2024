@@ -7,8 +7,8 @@ def isArmstrong(N):  #defining a function for checking if the number is armstron
         N = N // 10
         count += 1  ##for counting the number of digits in the fivin number
 
-    while k != 0:
-        a = k % 10 #finding individual digits using mathematical technique to extract all digits one by one
+    while k!= 0:
+        a = k%10 #finding individual digits using mathematical technique to extract all digits one by one
         k = k // 10
         sum += a ** count
 
