@@ -1,0 +1,39 @@
+# Step 1: Sieve of Eratosthenes to generate prime numbers
+def sieve_of_eratosthenes(limit):
+    primes = [True] * (limit + 1)  # Initialize all entries as True
+    p = 2
+    while p * p <= limit:
+        if primes[p]:
+            # Updating all multiples of p to False
+            for i in range(p * p, limit + 1, p):
+                primes[i] = False
+        p += 1
+    # Collecting all prime numbers
+    prime_numbers = [p for p in range(2, limit + 1) if primes[p]]
+    return prime_numbers
+
+# Step 2: Kadane's Algorithm to find maximum sum of a subarray
+def kadane_algorithm(arr):
+    max_ending_here = max_so_far = arr[0]
+    
+    for num in arr[1:]:
+        max_ending_here = max(num, max_ending_here + num)
+        max_so_far = max(max_so_far, max_ending_here)
+    
+    return max_so_far
+
+# Step 3: Combine Sieve and Kadane to find maximum sum of a subarray of prime numbers
+def prime_subarray_max_sum(limit):
+    prime_numbers = sieve_of_eratosthenes(limit)
+    if not prime_numbers:
+        return "No primes found in the given range"
+    
+    # Applying Kadane's Algorithm on the list of prime numbers
+    max_sum = kadane_algorithm(prime_numbers)
+    return prime_numbers, max_sum
+
+# Example usage
+limit = 100  # You can set this to any number you want
+primes, max_sum = prime_subarray_max_sum(limit)
+print("Prime Numbers:", primes)
+print("Maximum sum of a subarray of prime numbers:", max_sum)
