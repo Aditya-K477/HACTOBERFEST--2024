@@ -9,19 +9,19 @@ class BinaryTree:
         self.root = None
 
     def insert(self, value):
-        if self.root is None:
+        if not self.root:
             self.root = TreeNode(value)
         else:
             self._insert_recursively(self.root, value)
 
     def _insert_recursively(self, node, value):
         if value < node.value:
-            if node.left is None:
+            if not node.left:
                 node.left = TreeNode(value)
             else:
                 self._insert_recursively(node.left, value)
         else:
-            if node.right is None:
+            if not node.right:
                 node.right = TreeNode(value)
             else:
                 self._insert_recursively(node.right, value)
@@ -47,13 +47,8 @@ class BinaryTree:
 # Example Usage
 if __name__ == "__main__":
     bt = BinaryTree()
-    bt.insert(5)
-    bt.insert(3)
-    bt.insert(7)
-    bt.insert(2)
-    bt.insert(4)
-    bt.insert(6)
-    bt.insert(8)
+    for value in [5, 3, 7, 2, 4, 6, 8]:
+        bt.insert(value)
 
     print("In-order Traversal: ", end='')
     bt.in_order_traversal(bt.root)  # Output: 2 3 4 5 6 7 8 
